@@ -1,0 +1,69 @@
+###############################
+Description
+###############################
+
+#In this task, we show how to program real-time tasks on Linux environment, including periodic and aporadic tasks,
+event handling, priority inheritance, etc. and also to use Linux trace tools to view and analyze real-time scheduling.
+
+#input.txt file has the input including number of tasks, temination time, thread priorities and few paramters.
+
+#Implemented the activation of threads at the same time using pthread_cond_wait() and pthread_cond_signal().
+
+#p_thread_function() and ap_thread_function() are the periodic and aperiodic tasks implementation.sample_function() 
+and sample_thread are created to use the same mutex lock that has been used in periodic task to view the scheduling
+using PI enabled mutex.
+
+#count_mutex is used for locking the critical section for handling the threads activation simultaneously.
+
+#Once the execution termination time is met, an alarm signal is raised and in whose hanlder termination conditional flag 
+is set and SIGUSR1 signal is generated to all the threads to terminate the execution. The executing thread will terminate
+after the current execution is done.
+
+#In the signal handler of the SIGUSR1 a print statement is used to check outputting the number of times handler is executed.
+
+#In the input.txt file the event number to trigger the aperiodic task should have values between 0 and 4. The Mutex Lock number
+for the periodic task should have values between 1 and 10 as only keyboard 0-5 events and 10 mutex locks are handled.
+
+
+
+
+
+###############################
+Steps to execute
+###############################
+
+#Open the terminal and run the following command 
+	sudo -s
+
+#Enter the root password
+
+#Run the following command
+	cat /proc/bus/input/devices 
+ and note the event number '#' for the input device keyboard from the list of input devices
+ 
+#Open the main.c file and in line number 138, enter the event number '#' noted in the previous step in "/dev/input/event#"
+
+#In the terminal traverse to the current directory having the files downloaded and run the following commands
+	make
+	./final
+
+#Enter any keys from 0 to 4 to generate the events
+
+#If want to view and analyz the real-time scheduling, run the following commands
+	trace-cmd record -e signal -e sched_switch ./final
+	kernelshark
+
+
+
+
+
+###############################
+NOTE
+###############################
+
+This program is tested on
+Host machine has the following configuration.
+#OS - Linux
+#Distro - Ubuntu 16.04.2
+#Linux kernel version - 4.4.0-38-generic
+#gcc version 5.4.0 20160609
