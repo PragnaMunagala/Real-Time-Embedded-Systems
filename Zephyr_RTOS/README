@@ -1,0 +1,50 @@
+###############################
+Description
+###############################
+
+#In this task, computed the distance of an object using Ultrasonic Distance Sensor. Computed body movement via 
+gyroscope and accelerometer sensors and applied kalman filter design for state estimation. Also learned input 
+and output handling.
+
+#The application program is built on Zephyr RTOS environment consisting of three tasks
+	#To read data from an accelerometer and gyroscope MPU 6050 sensor and data is processed by a Kalman filter 
+	to estimate the position and orientation of a rigid body.
+	#To measure the pulse width from the echo signal of HC-SR04 periodically to obtain a sequence of distance measures.
+	#To log the processed data from the sensors.
+
+#Implemented one thread for each task and synchronized using semaphores.
+
+#Kalman filtering approach is implemented in kalman.h and main.c by referring to "https://github.com/TKJElectronics/KalmanFilter".
+
+#Configured float and newlib paramters in prj.conf to enable floating point operations and use of standard C libraries.
+
+#A simple bash file run.sh is written setting up the zephyr variables and performing make of the program instead of entering
+commands every single time.
+
+#Distance, Accelerometer x,y,z, Gyroscope x,y,z and the kalman filter X(roll) and Y(pitch) values are displayed as output.
+
+
+
+###############################
+Steps to execute
+###############################
+
+#Download the files from the github repository.
+
+#Place the run.sh file in the home directory.
+
+#Create a directory my_app in samples directory in zephyr-project base.
+
+#Place the 'src' directory, Makefile, README, prj.conf, testcase.ini files in my_app directory.
+
+#Open the terminal and run the following command
+	sudo -s
+
+#Enter the root password.
+
+#Run the following command
+	bash run.sh
+
+#Copy the zephyr.strip file created in outdir/galileo in my_app directory and place it in the kernel directory of SD card.
+
+#Place the SD card in Galileo board and boot the zephyr_kernel.
