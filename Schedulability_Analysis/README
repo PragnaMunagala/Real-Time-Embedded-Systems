@@ -1,0 +1,66 @@
+###############################
+Description
+###############################
+
+#In this task, we developed an analysis program implementing various schedulability testing approaches for 
+ EDF, RM, and DM schedule algorithms and also a comparative analysis of the schedulability of EDF, RM and DM 
+ algorithms using synthetic tasks sets.
+
+#In the first part, the task sets information is read from an input file and the schedulability using EDF, RM 
+ and DM are analysed.
+
+#In the second part, synthetic task sets are generating and the schedulability using EDF, RM and DM are analysed.
+
+#In the synthetic tasks generation, utilizations for each task set are generating using UUnifast algorithm.
+
+#The periods of each task set are randomly generated within a chosen goemetric ranges.
+
+#Worst case execution time of each task set are then generated using utilization*period.
+
+#Deadlines are generated for four different cases   (Ci - worst case execution time, Ti - period)
+	#10 tasks in each task set and the deadline distribution of [Ci, ,Ti]
+	#25 tasks in each task set and the deadline distribution of [Ci, ,Ti]
+	#10 tasks in each task set and the deadline distribution of [Ci +(Ti-Ci)/2 ,Ti]
+	#25 tasks in each task set and the deadline distribution of [Ci+(Ti-Ci)/2 ,Ti]
+
+#Each scheduling algorithm is run on each task set for each of the above mentioned case and the % of task sets
+ that are schedulable is noted and plotted.
+
+#The algorithmic approach for each task set is explained in Report.pdf
+
+#The output of the program is
+		#For first part - printed whether the task set is schedulable or not by each scheduling algorithm
+						- printed the Worst case execution time in case of Response Time analysis
+						- printed first missing deadline in case of loading factor approach
+
+		#For second part - printed the number of tasks schedulable by each algorithm in each case for 10 utilization points
+
+
+
+
+
+###############################
+Steps to execute
+###############################
+
+#Open the terminal and run the following command 
+	sudo -s
+
+#Enter the root password
+
+#In the terminal traverse to the current directory having the files downloaded and run the following commands
+	bash run.sh
+
+
+
+
+###############################
+NOTE
+###############################
+
+This program is tested on
+Host machine has the following configuration.
+#OS - Linux
+#Distro - Ubuntu 16.04.2
+#Linux kernel version - 4.4.0-38-generic
+#gcc version 5.4.0 20160609
